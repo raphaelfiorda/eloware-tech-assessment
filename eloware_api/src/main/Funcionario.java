@@ -2,12 +2,11 @@ package main;
 import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
-import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class Funcionario extends Pessoa {
     private BigDecimal salary;
-    public String role;
+    private String role;
 
     public Funcionario (String name, CharSequence birthday,
                         String salary, String role ) {
@@ -55,6 +54,6 @@ public class Funcionario extends Pessoa {
     @Override
     public String toString () {
         return String.format("{%s, %s, %s, %s}", getName(),
-                                  formatedBirthday(), Funcionario.formatSalary(salary), role);
+                                  formatedBirthday(), Funcionario.formatSalary(salary), this.role);
       }
 }

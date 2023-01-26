@@ -1,6 +1,7 @@
 package main;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -77,5 +78,11 @@ public class FuncionariosLista {
         }
         System.out.println(String.format("{%s, %s}",
                               oldest.getName(), oldest.formatedBirthday()));
+    }
+
+    public void printSummationSalary() {
+        BigDecimal summation = this.employees.stream()
+            .reduce(new BigDecimal("0.0"), (a, b) -> a.add(b.getSalary()), BigDecimal::add);
+        System.out.println(Funcionario.formatSalary((summation)));
     }
 }

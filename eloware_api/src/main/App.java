@@ -36,6 +36,7 @@ public class App {
         funcLista.printSorted();
 
         // Imprime a soma de todas os salários
+        funcLista.printSummationSalary();
 
         // Imprime quantos salários mínimos ganha cada funcionário
     }
