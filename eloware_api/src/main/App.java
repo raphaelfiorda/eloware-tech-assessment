@@ -30,6 +30,7 @@ public class App {
         funcLista.printByMonthBirthday(months);
 
         // Imprime o funcionário com maior idade
+        funcLista.printOldestEmployee();
 
         // Imprime a lista de funcionários em ordem alfabética
         funcLista.printSorted();

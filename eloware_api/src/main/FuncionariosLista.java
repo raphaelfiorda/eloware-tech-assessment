@@ -32,7 +32,7 @@ public class FuncionariosLista {
     }
 
     public void printByRole() {
-        Map<String, List<Funcionario>> funcByRole = employees.stream()
+        Map<String, List<Funcionario>> funcByRole = this.employees.stream()
             .collect(
                 Collectors.groupingBy(Funcionario::getRole));
         System.out.println(funcByRole.toString());
@@ -40,7 +40,7 @@ public class FuncionariosLista {
 
     public void printByMonthBirthday(int month) {
         Predicate<Funcionario> byMonth = 
-            func -> func.birthday.getMonthValue() == month;
+            func -> func.getBirthday().getMonthValue() == month;
 
         List<Funcionario> funcs = this.employees.stream()
             .filter(byMonth)
@@ -53,7 +53,7 @@ public class FuncionariosLista {
         List<Integer> monthsList = new ArrayList<>(months);
 
         Predicate<Funcionario> byMonth = 
-            func -> monthsList.contains(func.birthday.getMonthValue());
+            func -> monthsList.contains(func.getBirthday().getMonthValue());
 
         List<Funcionario> funcs = this.employees.stream()
             .filter(byMonth)
@@ -66,5 +66,16 @@ public class FuncionariosLista {
         List<Funcionario> sortedEmployees = this.employees;
         sortedEmployees.sort(new SortByName());
         System.out.println(sortedEmployees);
+    }
+
+    public void printOldestEmployee() {
+        Funcionario oldest = this.employees.get(0);
+        for (Funcionario employee : this.employees) {
+            if (employee.isOlderThan(oldest)) {
+              oldest = employee;
+            }
+        }
+        System.out.println(String.format("{%s, %s}",
+                              oldest.getName(), oldest.formatedBirthday()));
     }
 }

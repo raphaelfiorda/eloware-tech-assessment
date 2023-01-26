@@ -54,9 +54,7 @@ public class Funcionario extends Pessoa {
      */
     @Override
     public String toString () {
-        String standardFormat = "dd/MM/yyyy";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(standardFormat);
-        return String.format("{%s, %s, %s, %s}", name,
-                                  birthday.format(formatter), Funcionario.formatSalary(salary), role);
+        return String.format("{%s, %s, %s, %s}", getName(),
+                                  formatedBirthday(), Funcionario.formatSalary(salary), role);
       }
 }
