@@ -3,15 +3,34 @@ import java.time.LocalDate;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        String name = "João";
-        CharSequence birthday = "2000-10-18";
-        String role = "Operador";
-        String salary = "2009.44";
+        FuncionariosLista funcLista = new FuncionariosLista();
 
-        Funcionario funcionario = new Funcionario(name, birthday, salary, role);
-        Funcionario funcionario2 = new Funcionario("Maria", "1990-05-12", "2284.38", "Operador");
+        // Insere os funcionários da tabela e imprime a lista
+        funcLista.insert(new Funcionario("João", "2000-10-18", "2009.44", "Operador"));
+        funcLista.insert(new Funcionario("Maria", "1990-05-12", "2284.38", "Operador"));
+        funcLista.insert(new Funcionario("Caio", "1961-05-02", "9836.14", "Coordenador"));
+        funcLista.insert(new Funcionario("Miguel", "1988-10-14", "19119.88", "Diretor"));
+        funcLista.insert(new Funcionario("Alice", "1995-01-05", "2234.68", "Recepcionista"));
+        funcLista.insert(new Funcionario("Heitor", "1999-11-19", "1582.72", "Operador"));
+        funcLista.insert(new Funcionario("Arthur", "1993-03-31", "4071.84", "Contador"));
+        funcLista.insert(new Funcionario("Laura", "1994-07-08", "3017.45", "Gerente"));
+        funcLista.insert(new Funcionario("Heloísa", "2003-05-24", "1606.85", "Eletricista"));
+        funcLista.insert(new Funcionario("Helena", "1996-09-02", "2799.93", "Gerente"));
 
-        System.out.println(funcionario.getString());
-        System.out.println(funcionario2.getString());
+        funcLista.printEmployees();
+
+        // Atualiza salários dos funcionários em 110%
+
+        // Agrupa por função e imprime o mapeamento
+
+        // Imprime funcionários com aniversários no mês 10 ou 12
+
+        // Imprime o funcionário com maior idade
+
+        // Imprime a lista de funcionários em ordem alfabética
+
+        // Imprime a soma de todas os salários
+
+        // Imprime quantos salários mínimos ganha cada funcionário
     }
 }
