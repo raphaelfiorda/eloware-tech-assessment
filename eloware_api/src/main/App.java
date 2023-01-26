@@ -1,9 +1,8 @@
-import java.math.BigDecimal;
-import java.time.LocalDate;
+package main;
 import java.util.List;
 
 public class App {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         FuncionariosLista funcLista = new FuncionariosLista();
 
         // Insere os funcionários da tabela e imprime a lista
@@ -33,6 +32,7 @@ public class App {
         // Imprime o funcionário com maior idade
 
         // Imprime a lista de funcionários em ordem alfabética
+        funcLista.printSorted();
 
         // Imprime a soma de todas os salários
 

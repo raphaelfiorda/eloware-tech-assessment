@@ -1,10 +1,12 @@
+package main;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+
+import helpers.SortByName;
 
 public class FuncionariosLista {
     List<Funcionario> employees;
@@ -19,13 +21,13 @@ public class FuncionariosLista {
 
     public void printEmployees() {
         this.employees
-              .forEach((func) -> System.out.println(func.toString()));
+              .forEach(func -> System.out.println(func.toString()));
     }
 
     public void updateAllSalary(String value) {
         BigDecimal multiplicand = new BigDecimal(value);
         this.employees
-              .forEach((func) -> func.setSalary(func.getSalary()
+              .forEach(func -> func.setSalary(func.getSalary()
                                                     .multiply(multiplicand)));
     }
 
@@ -58,5 +60,11 @@ public class FuncionariosLista {
                 .collect(Collectors.toList());
         
         System.out.println(funcs);
+    }
+
+    public void printSorted() {
+        List<Funcionario> sortedEmployees = this.employees;
+        sortedEmployees.sort(new SortByName());
+        System.out.println(sortedEmployees);
     }
 }
