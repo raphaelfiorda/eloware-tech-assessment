@@ -1,10 +1,8 @@
 package main;
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.BitSet;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -89,12 +87,12 @@ public class FuncionariosLista {
     }
 
     public void printMinimunWagesByEmployee(BigDecimal minWage) {
-        String minWagesByEmployee = "";
+        StringBuilder minWagesByEmployee = new StringBuilder();
         for (Funcionario employee : this.employees) {
               int result = employee.countMinimumWages(minWage);
               String howMany = result <= 1 ? "salário mínimo" : "salários mínimos";
-              minWagesByEmployee += String.format("%s recebe cerca de %s %s.\n", 
-                                                      employee.getName(), result, howMany);
+              minWagesByEmployee.append(String.format("%s recebe cerca de %s %s.\n", 
+                                                      employee.getName(), result, howMany));
         }
         System.out.println(minWagesByEmployee);
     }
