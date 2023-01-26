@@ -1,6 +1,10 @@
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Collectors.*;
 
 public class FuncionariosLista {
     List<Funcionario> funcionarios;
@@ -15,7 +19,7 @@ public class FuncionariosLista {
 
     public void printEmployees() {
         this.funcionarios
-              .forEach((func) -> System.out.println(func.getString()));
+              .forEach((func) -> System.out.println(func.toString()));
     }
 
     public void updateAllSalary(String value) {
@@ -23,5 +27,12 @@ public class FuncionariosLista {
         this.funcionarios
               .forEach((func) -> func.setSalary(func.getSalary()
                                                     .multiply(multiplicand)));
+    }
+
+    public void printByRole() {
+        Map<String, List<Funcionario>> funcByRole = funcionarios.stream()
+            .collect(
+                Collectors.groupingBy(Funcionario::getRole));
+        System.out.println(funcByRole.toString());
     }
 }

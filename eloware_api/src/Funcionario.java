@@ -25,11 +25,16 @@ public class Funcionario extends Pessoa {
         return this.salary;
     }
 
+    public String getRole() {
+        return this.role;
+    }
+
     public void setSalary (BigDecimal newSalary) {
         this.salary = newSalary;
     }
 
-    public String getString () {
+    @Override
+    public String toString () {
         String standardFormat = "dd/MM/yyyy";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(standardFormat);
         String employeeStrData = String.format("{%s, %s, %s, %s}", name,
