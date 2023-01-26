@@ -1,5 +1,6 @@
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -26,6 +27,8 @@ public class App {
         funcLista.printByRole();
 
         // Imprime funcionários com aniversários no mês 10 ou 12
+        List<Integer> months = List.of(10, 5);
+        funcLista.printByMonthBirthday(months);
 
         // Imprime o funcionário com maior idade
 
