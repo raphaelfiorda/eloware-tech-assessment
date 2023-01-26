@@ -4,13 +4,14 @@ import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import helpers.SortByName;
 
 public class FuncionariosLista {
-    List<Funcionario> employees;
+    private List<Funcionario> employees;
 
     public FuncionariosLista() {
       this.employees = new ArrayList<>();
@@ -63,8 +64,9 @@ public class FuncionariosLista {
         System.out.println(funcs);
     }
 
-    public void printSorted() {
-        List<Funcionario> sortedEmployees = this.employees;
+    public void printSortedByName() {
+        ArrayList<Funcionario> sortedEmployees = new ArrayList<>();
+        sortedEmployees.addAll(this.employees);
         sortedEmployees.sort(new SortByName());
         System.out.println(sortedEmployees);
     }
@@ -84,5 +86,16 @@ public class FuncionariosLista {
         BigDecimal summation = this.employees.stream()
             .reduce(new BigDecimal("0.0"), (a, b) -> a.add(b.getSalary()), BigDecimal::add);
         System.out.println(Funcionario.formatSalary((summation)));
+    }
+
+    public void printMinimunWagesByEmployee(BigDecimal minWage) {
+        String minWagesByEmployee = "";
+        for (Funcionario employee : this.employees) {
+              int result = employee.countMinimumWages(minWage);
+              String howMany = result <= 1 ? "salário mínimo" : "salários mínimos";
+              minWagesByEmployee += String.format("%s recebe cerca de %s %s.\n", 
+                                                      employee.getName(), result, howMany);
+        }
+        System.out.println(minWagesByEmployee);
     }
 }
