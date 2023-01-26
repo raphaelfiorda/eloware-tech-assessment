@@ -15,30 +15,48 @@ public class Funcionario extends Pessoa {
         this.salary = new BigDecimal(salary);
         this.role = role;
     }
-    public String formatSalary() {
-        String formatedSalary = new DecimalFormat("#,###.##", 
-                                  new DecimalFormatSymbols(Locale.ITALIAN)).format(this.salary);
-        return formatedSalary;
+    
+    /** 
+     * @return String
+     */
+    public static String formatSalary(BigDecimal salary) {
+        return new DecimalFormat("#,###.##", 
+                                  new DecimalFormatSymbols(Locale.ITALIAN)).format(salary);
     }
 
+    
+    /** 
+     * @return BigDecimal
+     */
     public BigDecimal getSalary() {
         return this.salary;
     }
 
+    
+    /** 
+     * @return String
+     */
     public String getRole() {
         return this.role;
     }
 
+    
+    /** 
+     * @param newSalary
+     */
     public void setSalary (BigDecimal newSalary) {
         this.salary = newSalary;
     }
 
+    
+    /** 
+     * @return String
+     */
     @Override
     public String toString () {
         String standardFormat = "dd/MM/yyyy";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(standardFormat);
-        String employeeStrData = String.format("{%s, %s, %s, %s}", name,
-                                              birthday.format(formatter), formatSalary(), role);
-        return employeeStrData;
+        return String.format("{%s, %s, %s, %s}", name,
+                                  birthday.format(formatter), Funcionario.formatSalary(salary), role);
       }
 }

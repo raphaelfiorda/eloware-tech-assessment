@@ -27,7 +27,7 @@ public class App {
         funcLista.printByRole();
 
         // Imprime funcionários com aniversários no mês 10 ou 12
-        List<Integer> months = List.of(10, 5);
+        List<Integer> months = List.of(10, 12);
         funcLista.printByMonthBirthday(months);
 
         // Imprime o funcionário com maior idade

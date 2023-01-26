@@ -10,7 +10,7 @@ public class FuncionariosLista {
     List<Funcionario> employees;
 
     public FuncionariosLista() {
-      this.employees = new ArrayList<Funcionario>();
+      this.employees = new ArrayList<>();
     }
 
     public void insert(Funcionario funcionario) {
@@ -38,7 +38,7 @@ public class FuncionariosLista {
 
     public void printByMonthBirthday(int month) {
         Predicate<Funcionario> byMonth = 
-            (func) -> func.birthday.getMonthValue() == month;
+            func -> func.birthday.getMonthValue() == month;
 
         List<Funcionario> funcs = this.employees.stream()
             .filter(byMonth)
@@ -48,10 +48,10 @@ public class FuncionariosLista {
     }
 
     public void printByMonthBirthday(List<Integer> months) {
-        List<Integer> monthsList = new ArrayList(months);
+        List<Integer> monthsList = new ArrayList<>(months);
 
         Predicate<Funcionario> byMonth = 
-            (func) -> monthsList.contains(func.birthday.getMonthValue());
+            func -> monthsList.contains(func.birthday.getMonthValue());
 
         List<Funcionario> funcs = this.employees.stream()
             .filter(byMonth)
