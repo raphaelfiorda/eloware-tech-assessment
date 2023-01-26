@@ -20,6 +20,9 @@ public class App {
         funcLista.printEmployees();
 
         // Atualiza salários dos funcionários em 110%
+        // funcLista.updateAllSalary("1.10");
+
+        // funcLista.printEmployees();
 
         // Agrupa por função e imprime o mapeamento
 

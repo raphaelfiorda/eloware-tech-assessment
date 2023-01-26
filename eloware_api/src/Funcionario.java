@@ -6,8 +6,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Locale;
 
 public class Funcionario extends Pessoa {
-    BigDecimal salary;
-    String role;
+    private BigDecimal salary;
+    public String role;
 
     public Funcionario (String name, CharSequence birthday,
                         String salary, String role ) {
@@ -25,8 +25,8 @@ public class Funcionario extends Pessoa {
         return this.salary;
     }
 
-    public void setSalary (String newSalary) {
-        this.salary = new BigDecimal(newSalary);
+    public void setSalary (BigDecimal newSalary) {
+        this.salary = newSalary;
     }
 
     public String getString () {
