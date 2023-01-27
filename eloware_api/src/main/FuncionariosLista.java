@@ -22,6 +22,15 @@ public class FuncionariosLista {
         this.employees.add(employee);
     }
 
+
+    /**
+     * @param name a String
+     */
+    public void delete(String name) {
+        Predicate<Funcionario> toBeRemove = func -> func.getName().equals(name);
+        this.employees.removeIf(toBeRemove);
+    }
+
     
     /** 
      * @return List<String>

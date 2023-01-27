@@ -13,7 +13,7 @@ public class App {
     public static void main(String[] args) {
         FuncionariosLista funcLista = new FuncionariosLista();
         
-        // Insere os funcionários da tabela e imprime a lista
+        // Insere os funcionários da tabela
         funcLista.insert(new Funcionario("Maria", "2000-10-18", "2009.44", "Operador"));
         funcLista.insert(new Funcionario("João", "1990-05-12", "2284.38", "Operador"));
         funcLista.insert(new Funcionario("Caio", "1961-05-02", "9836.14", "Coordenador"));
@@ -25,7 +25,14 @@ public class App {
         funcLista.insert(new Funcionario("Heloísa", "2003-05-24", "1606.85", "Eletricista"));
         funcLista.insert(new Funcionario("Helena", "1996-09-02", "2799.93", "Gerente"));
 
+
+        // Remove um funcionario da lista com base no nome informado
+        funcLista.delete("João");
+
+
+        // Imprime todos os funcionários na lista
         Log.print("Todos os funcionários:\n" + funcLista.listAllEmployees() + "\n");
+
 
         // Atualiza salários dos funcionários em 110%
         funcLista.updateAllSalary("1.10");
