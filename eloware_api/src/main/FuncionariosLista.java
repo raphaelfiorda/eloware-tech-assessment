@@ -2,7 +2,6 @@ package main;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -15,78 +14,118 @@ public class FuncionariosLista {
       this.employees = new ArrayList<>();
     }
 
-    public void insert(Funcionario funcionario) {
-        this.employees.add(funcionario);
+    
+    /** 
+     * @param employee
+     */
+    public void insert(Funcionario employee) {
+        this.employees.add(employee);
     }
 
-    public void printEmployees() {
-        this.employees
-              .forEach(func -> System.out.println(func.toString()));
+    
+    /** 
+     * @return List<String>
+     */
+    public List<String> listAllEmployees() {
+        return this.employees.stream()
+                  .map(Funcionario::toString)
+                  .collect(Collectors.toList());
     }
 
+    
+    /** 
+     * @param value
+     */
     public void updateAllSalary(String value) {
         BigDecimal multiplicand = new BigDecimal(value);
         this.employees
               .forEach(func -> func.setSalary(func.getSalary()
-                                                    .multiply(multiplicand)));
+                                                  .multiply(multiplicand)));
     }
 
-    public void printByRole() {
-        Map<String, List<Funcionario>> funcByRole = this.employees.stream()
-            .collect(
-                Collectors.groupingBy(Funcionario::getRole));
-        System.out.println(funcByRole.toString());
+    
+    /** 
+     * @return String
+     */
+    public String listByRole() {
+        return this.employees.stream()
+                  .collect(Collectors
+                  .groupingBy(Funcionario::getRole))
+                  .toString();
     }
 
-    public void printByMonthBirthday(int month) {
+    
+    /** 
+     * @param month
+     * @return List of Funcionario
+     */
+    public List<Funcionario> listByMonthBirthday(int month) {
         Predicate<Funcionario> byMonth = 
             func -> func.getBirthday().getMonthValue() == month;
 
-        List<Funcionario> funcs = this.employees.stream()
-            .filter(byMonth)
-                .collect(Collectors.toList());
-        
-        System.out.println(funcs);
+        return this.employees.stream()
+                  .filter(byMonth)
+                  .collect(Collectors.toList());
     }
 
-    public void printByMonthBirthday(List<Integer> months) {
+    
+    /** 
+     * @param months a List of Integers
+     * @return List of Funcionario
+     */
+    public List<Funcionario> listByMonthBirthday(List<Integer> months) {
         List<Integer> monthsList = new ArrayList<>(months);
 
         Predicate<Funcionario> byMonth = 
             func -> monthsList.contains(func.getBirthday().getMonthValue());
 
-        List<Funcionario> funcs = this.employees.stream()
-            .filter(byMonth)
-                .collect(Collectors.toList());
-        
-        System.out.println(funcs);
+          return this.employees.stream()
+                    .filter(byMonth)
+                    .collect(Collectors.toList());
     }
 
-    public void printSortedByName() {
+
+    /**
+     * @return List of Funcionario
+     */
+    public List<Funcionario> listSortedByName() {
         ArrayList<Funcionario> sortedEmployees = new ArrayList<>();
         sortedEmployees.addAll(this.employees);
         sortedEmployees.sort(new SortByName());
-        System.out.println(sortedEmployees);
+        return sortedEmployees;
     }
 
-    public void printOldestEmployee() {
+
+    /**
+     * @return String
+     */
+    public String getOldestEmployee() {
         Funcionario oldest = this.employees.get(0);
         for (Funcionario employee : this.employees) {
             if (employee.isOlderThan(oldest)) {
               oldest = employee;
             }
         }
-        System.out.println(String.format("{%s, %s}",
-                              oldest.getName(), oldest.formatedBirthday()));
+         return String.format("{%s, %s}", oldest.getName(),
+                                  oldest.formatedBirthday());
     }
 
-    public void printSummationSalary() {
+
+    /**
+     * @return String
+     */
+    public String getSalarySummation() {
         BigDecimal summation = this.employees.stream()
             .reduce(new BigDecimal("0.0"), (a, b) -> a.add(b.getSalary()), BigDecimal::add);
-        System.out.println(Funcionario.formatSalary((summation)));
+        return Funcionario.formatSalary((summation));
     }
 
-    public void printMinimunWagesByEmployee(BigDecimal minWage) {
+    
+    /** 
+     * @param minWage a BigDecimal
+     * @return StringBuilder
+     */
+    public StringBuilder listMinimunWagesByEmployee(BigDecimal minWage) {
         StringBuilder minWagesByEmployee = new StringBuilder();
         for (Funcionario employee : this.employees) {
               int result = employee.countMinimumWages(minWage);
@@ -94,6 +133,6 @@ public class FuncionariosLista {
               minWagesByEmployee.append(String.format("%s recebe cerca de %s %s.\n", 
                                                       employee.getName(), result, howMany));
         }
-        System.out.println(minWagesByEmployee);
+        return minWagesByEmployee;
     }
 }

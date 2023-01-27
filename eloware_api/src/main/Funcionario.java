@@ -47,6 +47,11 @@ public class Funcionario extends Pessoa {
         this.salary = newSalary;
     }
 
+    
+    /** 
+     * @param minWage
+     * @return int
+     */
     public int countMinimumWages(BigDecimal minWage) {
         return getSalary()
                   .divideToIntegralValue(minWage)
@@ -59,7 +64,7 @@ public class Funcionario extends Pessoa {
      */
     @Override
     public String toString () {
-        return String.format("{%s, %s, %s, %s}", getName(),
-                                  formatedBirthday(), Funcionario.formatSalary(salary), this.role);
+        return String.format("{%s, %s, %s, %s}", getName(), formatedBirthday(),
+                                  Funcionario.formatSalary(salary), getRole());
     }
 }

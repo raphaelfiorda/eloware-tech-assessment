@@ -1,11 +1,18 @@
 package main;
 import java.util.List;
+
+import helpers.Log;
+
 import java.math.BigDecimal;
 
 public class App {
+    
+    /** 
+     * @param args
+     */
     public static void main(String[] args) {
         FuncionariosLista funcLista = new FuncionariosLista();
-
+        
         // Insere os funcionários da tabela e imprime a lista
         funcLista.insert(new Funcionario("Maria", "2000-10-18", "2009.44", "Operador"));
         funcLista.insert(new Funcionario("João", "1990-05-12", "2284.38", "Operador"));
@@ -18,29 +25,39 @@ public class App {
         funcLista.insert(new Funcionario("Heloísa", "2003-05-24", "1606.85", "Eletricista"));
         funcLista.insert(new Funcionario("Helena", "1996-09-02", "2799.93", "Gerente"));
 
-        funcLista.printEmployees();
+        Log.print("Todos os funcionários:\n" + funcLista.listAllEmployees() + "\n");
 
         // Atualiza salários dos funcionários em 110%
         funcLista.updateAllSalary("1.10");
 
+
         // Agrupa por função e imprime o mapeamento
-        funcLista.printByRole();
+        Log.print("Funcionários por função:\n" + funcLista.listByRole() + "\n");
+
 
         // Imprime funcionários com aniversários no mês 10 ou 12
         List<Integer> months = List.of(10, 12);
-        funcLista.printByMonthBirthday(months);
+        Log.print("Aniversariantes dos meses selecionados:\n" +
+                      funcLista.listByMonthBirthday(months) +  "\n");
+
 
         // Imprime o funcionário com maior idade
-        funcLista.printOldestEmployee();
+        Log.print("O funcionário com maior idade é: " +
+                      funcLista.getOldestEmployee() + "\n");
+
 
         // Imprime a lista de funcionários em ordem alfabética
-        funcLista.printSortedByName();
+        Log.print("Lista de funcionários (ordem alfabética):\n" +
+                      funcLista.listSortedByName() + "\n");
+
 
         // Imprime a soma de todas os salários
-        funcLista.printSummationSalary();
+        Log.print("Soma de todos os salários: " +
+                      funcLista.getSalarySummation() + "\n");
+
 
         // Imprime quantos salários mínimos ganha cada funcionário
         BigDecimal currentMinWage = new BigDecimal("1212.00");
-        funcLista.printMinimunWagesByEmployee(currentMinWage);
+        Log.print(funcLista.listMinimunWagesByEmployee(currentMinWage).toString());
     }
 }
